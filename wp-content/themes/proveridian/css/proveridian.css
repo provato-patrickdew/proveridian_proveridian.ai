@@ -124,14 +124,18 @@ a:focus {
 	background: rgba(43, 191, 191, 0.28);
 }
 
-/* Landing pages are built from full-width blocks — no page chrome. */
-.home .entry-header {
+/* Pages built from full-width blocks — no page chrome. */
+.home .entry-header,
+.pv-block-page .entry-header {
 	display: none;
 }
 
 .home .site-main,
 .home .site-main .page,
-.home .entry-content {
+.home .entry-content,
+.pv-block-page .site-main,
+.pv-block-page .site-main .page,
+.pv-block-page .entry-content {
 	margin: 0;
 }
 
@@ -301,7 +305,7 @@ body.archive .site-main,
 body.search .site-main,
 body.single .site-main,
 body.error404 .site-main,
-body.page:not(.home) .site-main {
+body.pv-plain-page .site-main {
 	max-width: 720px;
 	margin: 0 auto;
 	padding: 64px 24px 80px;

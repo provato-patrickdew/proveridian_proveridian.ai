@@ -1,0 +1,19 @@
+{
+  "apiVersion": 2,
+  "name": "acf/block-form-section",
+  "title": "Form Section",
+  "description": "Page header plus two-column layout: pitch and proof points left, Contact Form 7 card right.",
+  "category": "proveridian-blocks",
+  "icon": "email",
+  "keywords": ["form", "contact", "demo", "cf7"],
+  "acf": {
+    "mode": "auto",
+    "renderTemplate": "render.php"
+  },
+  "supports": {
+    "anchor": true,
+    "className": true
+  },
+  "style": "file:style.css",
+  "editorStyle": "file:style.css"
+}

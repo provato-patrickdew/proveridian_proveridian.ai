@@ -22,6 +22,11 @@ function proveridian_body_classes( $classes ) {
 		$classes[] = 'no-sidebar';
 	}
 
+	// Distinguish block-built pages (full-width sections) from plain content pages.
+	if ( is_page() && ! is_front_page() ) {
+		$classes[] = has_blocks() ? 'pv-block-page' : 'pv-plain-page';
+	}
+
 	return $classes;
 }
 add_filter( 'body_class', 'proveridian_body_classes' );
