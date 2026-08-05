@@ -3,7 +3,7 @@
  * Plugin Name: ProVeridian Blocks
  * Plugin URI: https://proveridian.ai
  * Description: Custom ACF blocks for the Proveridian website.
- * Version: 1.1.0
+ * Version: 1.1.1
  * Author: The Provato Group
  * Author URI: https://theprovatogroup.com
  * Text Domain: proveridian-blocks

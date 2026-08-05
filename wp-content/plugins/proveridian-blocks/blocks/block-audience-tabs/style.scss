@@ -195,6 +195,10 @@ $media_queries: (
 		color: #131E2B;
 		border: 1px solid transparent;
 
+		&:visited {
+			color: #131E2B;
+		}
+
 		&:hover,
 		&:focus {
 			background: #1B9695;
@@ -207,6 +211,10 @@ $media_queries: (
 		background: transparent;
 		color: #1E2D40;
 		border: 1px solid #C2CBD3;
+
+		&:visited {
+			color: #1E2D40;
+		}
 
 		&:hover,
 		&:focus {
