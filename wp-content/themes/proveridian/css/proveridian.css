@@ -93,6 +93,12 @@
 }
 
 /* ── Base typography ──────────────────────────────────────── */
+html {
+	/* Smooth anchor scrolling; scroll-padding clears the sticky header. */
+	scroll-behavior: smooth;
+	scroll-padding-top: 84px;
+}
+
 body {
 	font-family: var(--font-ui);
 	color: var(--text-primary);
