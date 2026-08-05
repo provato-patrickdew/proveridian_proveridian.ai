@@ -1,0 +1,19 @@
+{
+  "apiVersion": 2,
+  "name": "acf/block-ai-skills",
+  "title": "AI Skills",
+  "description": "Dark section explaining AI Skills: three benefit tiles plus department example cards.",
+  "category": "proveridian-blocks",
+  "icon": "welcome-learn-more",
+  "keywords": ["skills", "departments", "dark", "cards"],
+  "acf": {
+    "mode": "auto",
+    "renderTemplate": "render.php"
+  },
+  "supports": {
+    "anchor": true,
+    "className": true
+  },
+  "style": "file:style.css",
+  "editorStyle": "file:style.css"
+}

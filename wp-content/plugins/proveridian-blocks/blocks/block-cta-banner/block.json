@@ -1,0 +1,19 @@
+{
+  "apiVersion": 2,
+  "name": "acf/block-cta-banner",
+  "title": "CTA Banner",
+  "description": "Dark centered closing CTA with the ProVeridian mark, two-tone headline, and two buttons.",
+  "category": "proveridian-blocks",
+  "icon": "megaphone",
+  "keywords": ["cta", "banner", "closing"],
+  "acf": {
+    "mode": "auto",
+    "renderTemplate": "render.php"
+  },
+  "supports": {
+    "anchor": true,
+    "className": true
+  },
+  "style": "file:style.css",
+  "editorStyle": "file:style.css"
+}

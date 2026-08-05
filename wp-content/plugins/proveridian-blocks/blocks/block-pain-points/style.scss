@@ -1,0 +1,182 @@
+@use "sass:map";
+@use "sass:meta";
+@use "sass:list";
+@use "sass:string";
+
+$media_queries: (
+	xs:         string.unquote("only screen and (max-width: 0)"),
+	mobile:     string.unquote("only screen and (max-width: 415px)"),
+	sm:         string.unquote("only screen and (max-width: 576px)"),
+	md:         string.unquote("only screen and (max-width: 768px)"),
+	lg:         string.unquote("only screen and (max-width: 992px)"),
+	xl:         string.unquote("only screen and (max-width: 1200px)"),
+	xxl:        string.unquote("only screen and (max-width: 1400px)"),
+	mbpro15:    string.unquote("only screen and (max-width: 1441px)"),
+	mbpro16:    string.unquote("only screen and (max-width: 1601px)"),
+	special:    string.unquote("only screen and (max-width: 1675px)"),
+	ipadpro-ls: string.unquote("only screen and (min-width: 1366px) and (orientation: landscape)"),
+	ipadpro-pt: string.unquote("only screen and (min-width: 1024px) and (orientation: portrait)")
+);
+
+@mixin for_breakpoint($breakpoints) {
+	$conditions: ();
+	@each $breakpoint in $breakpoints {
+		$conditions: list.append(
+			$conditions,
+			#{meta.inspect(map.get($media_queries, $breakpoint))},
+			comma
+		);
+	}
+	@media #{$conditions} {
+		@content;
+	}
+}
+
+// Accent palette shared by the rule and card rails/icons
+$accents: (
+	amber:  #E8A020,
+	teal:   #2BBFBF,
+	purple: #956FA6,
+	gray:   #929E9E
+);
+
+// ─── Block Styles ────────────────────────────────────────────────────────────
+
+.pv-block-pain-points {
+	background: #F5F7FA;
+	padding: 96px 0;
+
+	&-inner {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 32px;
+	}
+
+	&-rule {
+		display: block;
+		width: 32px;
+		height: 2px;
+		margin-bottom: 18px;
+
+		@each $name, $color in $accents {
+			&.is-#{$name} {
+				background: $color;
+			}
+		}
+	}
+
+	&-eyebrow {
+		font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: #6C7B87;
+	}
+
+	&-headline {
+		font-family: "Raleway", "Helvetica Neue", Arial, sans-serif;
+		font-size: 36px;
+		font-weight: 600;
+		letter-spacing: -0.5px;
+		color: #1E2D40;
+		line-height: 1.12;
+		margin: 14px 0 12px;
+
+		@include for_breakpoint(md) {
+			font-size: 28px;
+		}
+	}
+
+	&-lede {
+		font-family: "Raleway", "Helvetica Neue", Arial, sans-serif;
+		font-weight: 300;
+		letter-spacing: -0.5px;
+		font-size: 22px;
+		line-height: 1.45;
+		color: #4E5C68;
+		max-width: 720px;
+		margin: 0;
+
+		@include for_breakpoint(md) {
+			font-size: 18px;
+		}
+	}
+
+	&-grid {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 20px;
+		margin-top: 44px;
+		align-items: stretch;
+
+		@include for_breakpoint(lg) {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		@include for_breakpoint(sm) {
+			grid-template-columns: minmax(0, 1fr);
+		}
+	}
+
+	&-card {
+		position: relative;
+		overflow: hidden;
+		background: #FFFFFF;
+		border: 1px solid #DAE0E7;
+		border-radius: 10px;
+		box-shadow: 0 1px 3px rgba(30, 45, 64, 0.08), 0 1px 2px rgba(30, 45, 64, 0.04);
+		padding: 24px 24px 24px 28px;
+
+		@each $name, $color in $accents {
+			&.is-#{$name} {
+				.pv-block-pain-points-card-rail {
+					background: $color;
+				}
+
+				.pv-block-pain-points-card-icon {
+					color: $color;
+				}
+			}
+		}
+
+		// Neutral cards use muted icon color, matching the design
+		&.is-gray .pv-block-pain-points-card-icon {
+			color: #6C7B87;
+		}
+	}
+
+	&-card-rail {
+		position: absolute;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		width: 3px;
+	}
+
+	&-card-icon {
+		display: inline-flex;
+		margin-bottom: 16px;
+
+		svg {
+			display: block;
+			flex: 0 0 auto;
+		}
+	}
+
+	&-card-title {
+		font-family: "Raleway", "Helvetica Neue", Arial, sans-serif;
+		font-size: 18px;
+		font-weight: 600;
+		letter-spacing: -0.5px;
+		color: #1E2D40;
+		margin: 0 0 10px;
+	}
+
+	&-card-text {
+		font-size: 13px;
+		color: #4E5C68;
+		line-height: 1.65;
+		margin: 0;
+	}
+}

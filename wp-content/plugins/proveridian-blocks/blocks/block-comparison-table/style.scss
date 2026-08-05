@@ -1,0 +1,226 @@
+@use "sass:map";
+@use "sass:meta";
+@use "sass:list";
+@use "sass:string";
+
+$media_queries: (
+	xs:         string.unquote("only screen and (max-width: 0)"),
+	mobile:     string.unquote("only screen and (max-width: 415px)"),
+	sm:         string.unquote("only screen and (max-width: 576px)"),
+	md:         string.unquote("only screen and (max-width: 768px)"),
+	lg:         string.unquote("only screen and (max-width: 992px)"),
+	xl:         string.unquote("only screen and (max-width: 1200px)"),
+	xxl:        string.unquote("only screen and (max-width: 1400px)"),
+	mbpro15:    string.unquote("only screen and (max-width: 1441px)"),
+	mbpro16:    string.unquote("only screen and (max-width: 1601px)"),
+	special:    string.unquote("only screen and (max-width: 1675px)"),
+	ipadpro-ls: string.unquote("only screen and (min-width: 1366px) and (orientation: landscape)"),
+	ipadpro-pt: string.unquote("only screen and (min-width: 1024px) and (orientation: portrait)")
+);
+
+@mixin for_breakpoint($breakpoints) {
+	$conditions: ();
+	@each $breakpoint in $breakpoints {
+		$conditions: list.append(
+			$conditions,
+			#{meta.inspect(map.get($media_queries, $breakpoint))},
+			comma
+		);
+	}
+	@media #{$conditions} {
+		@content;
+	}
+}
+
+// ─── Block Styles ────────────────────────────────────────────────────────────
+
+.pv-block-comparison-table {
+	background: #F5F7FA;
+	padding: 96px 0;
+
+	&-inner {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 32px;
+	}
+
+	&-rule {
+		display: block;
+		width: 32px;
+		height: 2px;
+		background: #2BBFBF;
+		margin-bottom: 18px;
+	}
+
+	&-eyebrow {
+		font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: #6C7B87;
+	}
+
+	&-headline {
+		font-family: "Raleway", "Helvetica Neue", Arial, sans-serif;
+		font-size: 36px;
+		font-weight: 600;
+		letter-spacing: -0.5px;
+		color: #1E2D40;
+		line-height: 1.12;
+		margin: 14px 0 44px;
+
+		@include for_breakpoint(md) {
+			font-size: 28px;
+		}
+	}
+
+	&-grid {
+		display: grid;
+		grid-template-columns: 1.1fr 1fr 1fr;
+		border: 1px solid #DAE0E7;
+		border-radius: 10px;
+		overflow: hidden;
+		background: #FFFFFF;
+
+		// Mobile: rows stack into labeled groups — never a side-scrolling table
+		@include for_breakpoint(md) {
+			grid-template-columns: minmax(0, 1fr);
+		}
+	}
+
+	&-head {
+		padding: 18px 20px;
+		border-bottom: 1px solid #DAE0E7;
+
+		@include for_breakpoint(md) {
+			display: none;
+		}
+	}
+
+	&-head-dimension {
+		background: #E9EDF2;
+		font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+		font-size: 10px;
+		font-weight: 600;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: #6C7B87;
+	}
+
+	&-head-competitor {
+		background: #E9EDF2;
+		border-left: 1px solid #DAE0E7;
+		font-family: "Raleway", "Helvetica Neue", Arial, sans-serif;
+		font-size: 16px;
+		font-weight: 600;
+		letter-spacing: -0.5px;
+		color: #4E5C68;
+	}
+
+	&-head-proveridian {
+		background: rgba(43, 191, 191, 0.08);
+		border-left: 1px solid #DAE0E7;
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		font-family: "Raleway", "Helvetica Neue", Arial, sans-serif;
+		font-size: 16px;
+		font-weight: 600;
+		letter-spacing: -0.5px;
+		color: #1E2D40;
+
+		img {
+			height: 24px;
+			width: auto;
+			display: block;
+		}
+
+		// Re-assert the hide: this rule's base display:flex outranks
+		// the shared -head rule by source order
+		@include for_breakpoint(md) {
+			display: none;
+		}
+	}
+
+	&-cell {
+		padding: 16px 20px;
+		border-bottom: 1px solid #DAE0E7;
+		font-size: 13px;
+
+		// Last row: no bottom border on any of its three cells
+		&:nth-last-child(-n+3) {
+			border-bottom: 0;
+		}
+
+		@include for_breakpoint(md) {
+			// Stacked layout: every cell keeps its border except the very last
+			&:nth-last-child(-n+3) {
+				border-bottom: 1px solid #DAE0E7;
+			}
+
+			&:last-child {
+				border-bottom: 0;
+			}
+		}
+	}
+
+	&-cell-dimension {
+		font-weight: 500;
+		color: #1E2D40;
+
+		@include for_breakpoint(md) {
+			background: #E9EDF2;
+			padding: 12px 20px;
+			font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+			font-size: 11px;
+			font-weight: 600;
+			letter-spacing: 0.14em;
+			text-transform: uppercase;
+			color: #4E5C68;
+		}
+	}
+
+	&-cell-competitor {
+		border-left: 1px solid #DAE0E7;
+		color: #4E5C68;
+
+		@include for_breakpoint(md) {
+			border-left: 0;
+
+			&::before {
+				content: attr(data-col);
+				display: block;
+				font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+				font-size: 10px;
+				font-weight: 600;
+				letter-spacing: 0.14em;
+				text-transform: uppercase;
+				color: #6C7B87;
+				margin-bottom: 4px;
+			}
+		}
+	}
+
+	&-cell-proveridian {
+		border-left: 1px solid #DAE0E7;
+		background: rgba(43, 191, 191, 0.04);
+		color: #1E2D40;
+
+		@include for_breakpoint(md) {
+			border-left: 0;
+
+			&::before {
+				content: attr(data-col);
+				display: block;
+				font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+				font-size: 10px;
+				font-weight: 600;
+				letter-spacing: 0.14em;
+				text-transform: uppercase;
+				color: #12706F;
+				margin-bottom: 4px;
+			}
+		}
+	}
+}

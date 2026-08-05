@@ -1,0 +1,229 @@
+@use "sass:map";
+@use "sass:meta";
+@use "sass:list";
+@use "sass:string";
+
+$media_queries: (
+	xs:         string.unquote("only screen and (max-width: 0)"),
+	mobile:     string.unquote("only screen and (max-width: 415px)"),
+	sm:         string.unquote("only screen and (max-width: 576px)"),
+	md:         string.unquote("only screen and (max-width: 768px)"),
+	lg:         string.unquote("only screen and (max-width: 992px)"),
+	xl:         string.unquote("only screen and (max-width: 1200px)"),
+	xxl:        string.unquote("only screen and (max-width: 1400px)"),
+	mbpro15:    string.unquote("only screen and (max-width: 1441px)"),
+	mbpro16:    string.unquote("only screen and (max-width: 1601px)"),
+	special:    string.unquote("only screen and (max-width: 1675px)"),
+	ipadpro-ls: string.unquote("only screen and (min-width: 1366px) and (orientation: landscape)"),
+	ipadpro-pt: string.unquote("only screen and (min-width: 1024px) and (orientation: portrait)")
+);
+
+@mixin for_breakpoint($breakpoints) {
+	$conditions: ();
+	@each $breakpoint in $breakpoints {
+		$conditions: list.append(
+			$conditions,
+			#{meta.inspect(map.get($media_queries, $breakpoint))},
+			comma
+		);
+	}
+	@media #{$conditions} {
+		@content;
+	}
+}
+
+// ─── Block Styles ────────────────────────────────────────────────────────────
+
+.pv-block-ai-skills {
+	background: #131E2B;
+	padding: 96px 0;
+
+	&-inner {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 32px;
+	}
+
+	&-rule {
+		display: block;
+		width: 32px;
+		height: 2px;
+		background: #57CFCE;
+		margin-bottom: 18px;
+	}
+
+	&-eyebrow {
+		font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: #57CFCE;
+	}
+
+	&-headline {
+		font-family: "Raleway", "Helvetica Neue", Arial, sans-serif;
+		font-size: 36px;
+		font-weight: 600;
+		letter-spacing: -0.5px;
+		color: #EEF2F6;
+		line-height: 1.12;
+		margin: 14px 0 12px;
+
+		@include for_breakpoint(md) {
+			font-size: 28px;
+		}
+	}
+
+	&-lede {
+		font-family: "Raleway", "Helvetica Neue", Arial, sans-serif;
+		font-weight: 300;
+		letter-spacing: -0.5px;
+		font-size: 22px;
+		line-height: 1.45;
+		color: #AEBCC9;
+		max-width: 720px;
+		margin: 0;
+
+		@include for_breakpoint(md) {
+			font-size: 18px;
+		}
+	}
+
+	&-benefits {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 20px;
+		margin-top: 44px;
+
+		@include for_breakpoint(lg) {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		@include for_breakpoint(md) {
+			grid-template-columns: minmax(0, 1fr);
+		}
+	}
+
+	&-benefit {
+		background: #1E2D40;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	&-benefit-icon {
+		display: inline-flex;
+		color: #2BBFBF;
+		margin-bottom: 16px;
+
+		svg {
+			display: block;
+			flex: 0 0 auto;
+		}
+	}
+
+	&-benefit-title {
+		font-family: "Raleway", "Helvetica Neue", Arial, sans-serif;
+		font-size: 18px;
+		font-weight: 600;
+		letter-spacing: -0.5px;
+		color: #EEF2F6;
+		margin: 0 0 10px;
+	}
+
+	&-benefit-text {
+		font-size: 13px;
+		color: #AEBCC9;
+		line-height: 1.65;
+		margin: 0;
+	}
+
+	&-interstitial {
+		font-family: "Raleway", "Helvetica Neue", Arial, sans-serif;
+		font-weight: 300;
+		letter-spacing: -0.5px;
+		font-size: 22px;
+		line-height: 1.45;
+		color: #EEF2F6;
+		max-width: 720px;
+		margin: 44px 0 0;
+
+		@include for_breakpoint(md) {
+			font-size: 18px;
+		}
+	}
+
+	&-departments {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 20px;
+		margin-top: 28px;
+		align-items: start;
+
+		@include for_breakpoint(lg) {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		@include for_breakpoint(sm) {
+			grid-template-columns: minmax(0, 1fr);
+		}
+	}
+
+	&-department {
+		background: #1E2D40;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 14px;
+		padding: 22px 24px;
+	}
+
+	&-department-header {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		padding-bottom: 14px;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+	}
+
+	&-department-icon {
+		display: inline-flex;
+		color: #2BBFBF;
+
+		svg {
+			display: block;
+			flex: 0 0 auto;
+		}
+	}
+
+	&-department-name {
+		font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: #7E8E9C;
+	}
+
+	&-department-skills {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		padding-top: 16px;
+	}
+
+	&-department-skill-title {
+		display: block;
+		font-family: "Raleway", "Helvetica Neue", Arial, sans-serif;
+		font-size: 16px;
+		font-weight: 600;
+		letter-spacing: -0.5px;
+		color: #EEF2F6;
+		margin-bottom: 4px;
+	}
+
+	&-department-skill-text {
+		font-size: 13px;
+		color: #AEBCC9;
+		line-height: 1.5;
+	}
+}

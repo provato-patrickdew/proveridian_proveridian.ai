@@ -9,7 +9,7 @@
 
 if ( ! defined( '_S_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( '_S_VERSION', '1.0.0' );
+	define( '_S_VERSION', '1.1.0' );
 }
 
 /**
@@ -85,6 +85,10 @@ function proveridian_setup() {
 	// Add theme support for selective refresh for widgets.
 	add_theme_support( 'customize-selective-refresh-widgets' );
 
+	// Load brand tokens and typography inside the block editor.
+	add_theme_support( 'editor-styles' );
+	add_editor_style( 'css/proveridian.css' );
+
 	/**
 	 * Add support for core custom logo.
 	 *
@@ -140,6 +144,8 @@ add_action( 'widgets_init', 'proveridian_widgets_init' );
 function proveridian_scripts() {
 	wp_enqueue_style( 'proveridian-style', get_stylesheet_uri(), array(), _S_VERSION );
 	wp_style_add_data( 'proveridian-style', 'rtl', 'replace' );
+
+	wp_enqueue_style( 'proveridian-theme', get_template_directory_uri() . '/css/proveridian.css', array( 'proveridian-style' ), _S_VERSION );
 
 	wp_enqueue_script( 'proveridian-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 

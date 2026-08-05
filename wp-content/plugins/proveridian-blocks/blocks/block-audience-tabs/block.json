@@ -1,0 +1,20 @@
+{
+  "apiVersion": 2,
+  "name": "acf/block-audience-tabs",
+  "title": "Audience Tabs",
+  "description": "Tabbed section where each audience tab reveals a pitch and four proof-point cards.",
+  "category": "proveridian-blocks",
+  "icon": "index-card",
+  "keywords": ["tabs", "audience", "segments"],
+  "acf": {
+    "mode": "auto",
+    "renderTemplate": "render.php"
+  },
+  "supports": {
+    "anchor": true,
+    "className": true
+  },
+  "viewScript": "file:./block-audience-tabs.js",
+  "style": "file:style.css",
+  "editorStyle": "file:style.css"
+}

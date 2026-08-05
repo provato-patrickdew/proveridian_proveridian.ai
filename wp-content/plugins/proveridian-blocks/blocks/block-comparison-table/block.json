@@ -1,0 +1,19 @@
+{
+  "apiVersion": 2,
+  "name": "acf/block-comparison-table",
+  "title": "Comparison Table",
+  "description": "Three-column comparison grid: dimension, competitor, and highlighted ProVeridian column.",
+  "category": "proveridian-blocks",
+  "icon": "editor-table",
+  "keywords": ["comparison", "table", "versus"],
+  "acf": {
+    "mode": "auto",
+    "renderTemplate": "render.php"
+  },
+  "supports": {
+    "anchor": true,
+    "className": true
+  },
+  "style": "file:style.css",
+  "editorStyle": "file:style.css"
+}

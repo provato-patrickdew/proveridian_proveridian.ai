@@ -1,0 +1,195 @@
+@use "sass:map";
+@use "sass:meta";
+@use "sass:list";
+@use "sass:string";
+
+$media_queries: (
+	xs:         string.unquote("only screen and (max-width: 0)"),
+	mobile:     string.unquote("only screen and (max-width: 415px)"),
+	sm:         string.unquote("only screen and (max-width: 576px)"),
+	md:         string.unquote("only screen and (max-width: 768px)"),
+	lg:         string.unquote("only screen and (max-width: 992px)"),
+	xl:         string.unquote("only screen and (max-width: 1200px)"),
+	xxl:        string.unquote("only screen and (max-width: 1400px)"),
+	mbpro15:    string.unquote("only screen and (max-width: 1441px)"),
+	mbpro16:    string.unquote("only screen and (max-width: 1601px)"),
+	special:    string.unquote("only screen and (max-width: 1675px)"),
+	ipadpro-ls: string.unquote("only screen and (min-width: 1366px) and (orientation: landscape)"),
+	ipadpro-pt: string.unquote("only screen and (min-width: 1024px) and (orientation: portrait)")
+);
+
+@mixin for_breakpoint($breakpoints) {
+	$conditions: ();
+	@each $breakpoint in $breakpoints {
+		$conditions: list.append(
+			$conditions,
+			#{meta.inspect(map.get($media_queries, $breakpoint))},
+			comma
+		);
+	}
+	@media #{$conditions} {
+		@content;
+	}
+}
+
+// ─── Block Styles ────────────────────────────────────────────────────────────
+
+.pv-block-benefit-cards {
+	background: #F5F7FA;
+	border-top: 1px solid #DAE0E7;
+	padding: 96px 0;
+
+	&-inner {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 32px;
+	}
+
+	&-rule {
+		display: block;
+		width: 32px;
+		height: 2px;
+		background: #2BBFBF;
+		margin-bottom: 18px;
+	}
+
+	&-eyebrow {
+		font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: #6C7B87;
+	}
+
+	&-headline {
+		font-family: "Raleway", "Helvetica Neue", Arial, sans-serif;
+		font-size: 36px;
+		font-weight: 600;
+		letter-spacing: -0.5px;
+		color: #1E2D40;
+		line-height: 1.12;
+		margin: 14px 0 12px;
+
+		@include for_breakpoint(md) {
+			font-size: 28px;
+		}
+	}
+
+	&-lede {
+		font-family: "Raleway", "Helvetica Neue", Arial, sans-serif;
+		font-weight: 300;
+		letter-spacing: -0.5px;
+		font-size: 22px;
+		line-height: 1.45;
+		color: #4E5C68;
+		max-width: 720px;
+		margin: 0 0 44px;
+
+		@include for_breakpoint(md) {
+			font-size: 18px;
+		}
+	}
+
+	&-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 20px;
+		align-items: stretch;
+
+		@include for_breakpoint(lg) {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		@include for_breakpoint(md) {
+			grid-template-columns: minmax(0, 1fr);
+		}
+	}
+
+	&-card {
+		background: #FFFFFF;
+		border: 1px solid #DAE0E7;
+		border-radius: 14px;
+		box-shadow: 0 1px 3px rgba(30, 45, 64, 0.08), 0 1px 2px rgba(30, 45, 64, 0.04);
+		padding: 28px;
+		display: flex;
+		flex-direction: column;
+	}
+
+	&-card-icon {
+		display: inline-flex;
+		margin-bottom: 16px;
+
+		&.is-teal {
+			color: #2BBFBF;
+		}
+
+		&.is-purple {
+			color: #956FA6;
+		}
+
+		&.is-amber {
+			color: #E8A020;
+		}
+
+		svg {
+			display: block;
+			flex: 0 0 auto;
+		}
+	}
+
+	&-card-label {
+		font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: #6C7B87;
+	}
+
+	&-card-title {
+		font-family: "Raleway", "Helvetica Neue", Arial, sans-serif;
+		font-size: 22px;
+		font-weight: 600;
+		letter-spacing: -0.5px;
+		color: #1E2D40;
+		margin: 8px 0 10px;
+	}
+
+	&-card-text {
+		font-size: 13px;
+		color: #4E5C68;
+		line-height: 1.65;
+		margin: 0 0 20px;
+	}
+
+	&-card-points {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		margin-top: auto;
+	}
+
+	&-card-point {
+		display: flex;
+		gap: 10px;
+		align-items: flex-start;
+	}
+
+	&-card-point-check {
+		color: #2BBFBF;
+		display: inline-flex;
+		margin-top: 1px;
+
+		svg {
+			display: block;
+			flex: 0 0 auto;
+		}
+	}
+
+	&-card-point-text {
+		font-size: 13px;
+		color: #4E5C68;
+		line-height: 1.5;
+	}
+}

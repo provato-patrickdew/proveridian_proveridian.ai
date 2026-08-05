@@ -1,0 +1,19 @@
+{
+  "apiVersion": 2,
+  "name": "acf/block-hero",
+  "title": "Hero",
+  "description": "Dark gradient hero with three-line headline, lede, two CTAs, and a media panel.",
+  "category": "proveridian-blocks",
+  "icon": "cover-image",
+  "keywords": ["hero", "banner", "cta"],
+  "acf": {
+    "mode": "auto",
+    "renderTemplate": "render.php"
+  },
+  "supports": {
+    "anchor": true,
+    "className": true
+  },
+  "style": "file:style.css",
+  "editorStyle": "file:style.css"
+}

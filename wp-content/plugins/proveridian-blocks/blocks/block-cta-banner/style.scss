@@ -1,0 +1,147 @@
+@use "sass:map";
+@use "sass:meta";
+@use "sass:list";
+@use "sass:string";
+
+$media_queries: (
+	xs:         string.unquote("only screen and (max-width: 0)"),
+	mobile:     string.unquote("only screen and (max-width: 415px)"),
+	sm:         string.unquote("only screen and (max-width: 576px)"),
+	md:         string.unquote("only screen and (max-width: 768px)"),
+	lg:         string.unquote("only screen and (max-width: 992px)"),
+	xl:         string.unquote("only screen and (max-width: 1200px)"),
+	xxl:        string.unquote("only screen and (max-width: 1400px)"),
+	mbpro15:    string.unquote("only screen and (max-width: 1441px)"),
+	mbpro16:    string.unquote("only screen and (max-width: 1601px)"),
+	special:    string.unquote("only screen and (max-width: 1675px)"),
+	ipadpro-ls: string.unquote("only screen and (min-width: 1366px) and (orientation: landscape)"),
+	ipadpro-pt: string.unquote("only screen and (min-width: 1024px) and (orientation: portrait)")
+);
+
+@mixin for_breakpoint($breakpoints) {
+	$conditions: ();
+	@each $breakpoint in $breakpoints {
+		$conditions: list.append(
+			$conditions,
+			#{meta.inspect(map.get($media_queries, $breakpoint))},
+			comma
+		);
+	}
+	@media #{$conditions} {
+		@content;
+	}
+}
+
+// ─── Block Styles ────────────────────────────────────────────────────────────
+
+.pv-block-cta-banner {
+	background: #1E2D40;
+	padding: 88px 0;
+
+	&-inner {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 32px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+	}
+
+	&-mark {
+		height: 48px;
+		width: auto;
+		display: block;
+	}
+
+	&-headline {
+		font-family: "Raleway", "Helvetica Neue", Arial, sans-serif;
+		font-size: 48px;
+		font-weight: 300;
+		letter-spacing: -0.5px;
+		color: #EEF2F6;
+		line-height: 1.18;
+		margin: 24px 0 0;
+
+		span {
+			font-weight: 600;
+		}
+
+		@include for_breakpoint(md) {
+			font-size: 36px;
+		}
+
+		@include for_breakpoint(sm) {
+			font-size: 28px;
+		}
+	}
+
+	&-body {
+		font-size: 16px;
+		color: #AEBCC9;
+		line-height: 1.65;
+		max-width: 520px;
+		margin: 14px 0 0;
+	}
+
+	&-ctas {
+		display: flex;
+		gap: 12px;
+		margin-top: 28px;
+
+		@include for_breakpoint(sm) {
+			flex-direction: column;
+			align-items: center;
+		}
+	}
+
+	&-btn-primary,
+	&-btn-secondary {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		height: 44px;
+		padding: 0 20px;
+		gap: 8px;
+		font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+		font-size: 14px;
+		font-weight: 500;
+		line-height: 1;
+		letter-spacing: -0.01em;
+		white-space: nowrap;
+		border-radius: 6px;
+		text-decoration: none;
+		transition: background-color 120ms cubic-bezier(0.2, 0, 0.2, 1), border-color 120ms cubic-bezier(0.2, 0, 0.2, 1), color 120ms cubic-bezier(0.2, 0, 0.2, 1);
+
+		svg {
+			display: block;
+			flex: 0 0 auto;
+		}
+	}
+
+	&-btn-primary {
+		background: #2BBFBF;
+		color: #131E2B;
+		border: 1px solid transparent;
+
+		&:hover,
+		&:focus {
+			background: #1B9695;
+			color: #131E2B;
+			text-decoration: none;
+		}
+	}
+
+	&-btn-secondary {
+		background: transparent;
+		color: #EEF2F6;
+		border: 1px solid rgba(255, 255, 255, 0.2);
+
+		&:hover,
+		&:focus {
+			border-color: rgba(255, 255, 255, 0.4);
+			color: #EEF2F6;
+			text-decoration: none;
+		}
+	}
+}

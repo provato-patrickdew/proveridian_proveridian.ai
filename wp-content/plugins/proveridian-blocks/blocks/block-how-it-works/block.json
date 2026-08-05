@@ -1,0 +1,19 @@
+{
+  "apiVersion": 2,
+  "name": "acf/block-how-it-works",
+  "title": "How It Works",
+  "description": "White section with four numbered steps under accent top-borders and two media panels.",
+  "category": "proveridian-blocks",
+  "icon": "editor-ol",
+  "keywords": ["steps", "process", "how it works"],
+  "acf": {
+    "mode": "auto",
+    "renderTemplate": "render.php"
+  },
+  "supports": {
+    "anchor": true,
+    "className": true
+  },
+  "style": "file:style.css",
+  "editorStyle": "file:style.css"
+}

@@ -1,0 +1,19 @@
+{
+  "apiVersion": 2,
+  "name": "acf/block-benefit-cards",
+  "title": "Benefit Cards",
+  "description": "Light section with headline, lede, and three audience benefit cards with checklists.",
+  "category": "proveridian-blocks",
+  "icon": "groups",
+  "keywords": ["benefits", "audience", "cards", "checklist"],
+  "acf": {
+    "mode": "auto",
+    "renderTemplate": "render.php"
+  },
+  "supports": {
+    "anchor": true,
+    "className": true
+  },
+  "style": "file:style.css",
+  "editorStyle": "file:style.css"
+}
