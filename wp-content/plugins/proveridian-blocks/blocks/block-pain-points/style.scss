@@ -44,8 +44,8 @@ $accents: (
 
 .pv-block-pain-points {
 	// Hairline top border separates from the grey block above; the gradient
-	// fades toward the white "How It Works" block below.
-	background: linear-gradient(180deg, #F5F7FA 0%, #FCFCFD 100%);
+	// runs white at the top down to light grey at the bottom.
+	background: linear-gradient(180deg, #FCFCFD 0%, #F5F7FA 100%);
 	border-top: 1px solid #E3E8EE;
 	padding: 96px 0;
 
