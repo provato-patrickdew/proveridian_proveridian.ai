@@ -35,7 +35,9 @@ $media_queries: (
 // ─── Block Styles ────────────────────────────────────────────────────────────
 
 .pv-block-benefit-cards {
-	background: #F5F7FA;
+	// Light grey at the top fading to white at the bottom, meeting the white
+	// top of the Pain Points gradient below.
+	background: #f5f7fa;
 	border-top: 1px solid #DAE0E7;
 	padding: 96px 0;
 
