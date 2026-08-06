@@ -69,6 +69,7 @@ add_action( 'acf/include_fields', function() {
 							'database'     => 'Database',
 							'credit-card'  => 'Credit Card',
 							'eye'          => 'Eye',
+							'users'        => 'Users (teams)',
 						),
 						'default_value' => 'shield-alert',
 						'wrapper' => array( 'width' => '25' ),

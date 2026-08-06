@@ -104,8 +104,10 @@ $accents: (
 	}
 
 	&-grid {
+		// 6-column track: each card spans 2 → 3 cards per row. A trailing
+		// row of 1 or 2 cards is centered (see &-card placement rules).
 		display: grid;
-		grid-template-columns: repeat(4, minmax(0, 1fr));
+		grid-template-columns: repeat(6, minmax(0, 1fr));
 		gap: 20px;
 		margin-top: 44px;
 		align-items: stretch;
@@ -122,11 +124,32 @@ $accents: (
 	&-card {
 		position: relative;
 		overflow: hidden;
+		grid-column: span 2;
 		background: #FFFFFF;
 		border: 1px solid #DAE0E7;
 		border-radius: 10px;
 		box-shadow: 0 1px 3px rgba(30, 45, 64, 0.08), 0 1px 2px rgba(30, 45, 64, 0.04);
 		padding: 24px 24px 24px 28px;
+
+		// Center a trailing row of one orphan card (totals of 4, 7, …).
+		&:last-child:nth-child(3n + 1) {
+			grid-column: 3 / span 2;
+		}
+
+		// Center a trailing row of two orphan cards (totals of 5, 8, …):
+		// nudge the first orphan in; the last one auto-flows beside it.
+		&:nth-last-child(2):nth-child(3n + 1) {
+			grid-column: 2 / span 2;
+		}
+
+		// Below lg the grid drops to 2 / 1 columns — cancel the spans.
+		@include for_breakpoint(lg) {
+			&,
+			&:last-child:nth-child(3n + 1),
+			&:nth-last-child(2):nth-child(3n + 1) {
+				grid-column: auto;
+			}
+		}
 
 		@each $name, $color in $accents {
 			&.is-#{$name} {
