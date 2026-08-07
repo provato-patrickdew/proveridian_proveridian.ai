@@ -9,7 +9,7 @@
 
 if ( ! defined( '_S_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( '_S_VERSION', '1.1.1' );
+	define( '_S_VERSION', '1.1.2' );
 }
 
 /**
@@ -140,15 +140,29 @@ function proveridian_widgets_init() {
 add_action( 'widgets_init', 'proveridian_widgets_init' );
 
 /**
+ * Asset version: the file's modified time, so a changed file always busts the cache.
+ * Falls back to the theme version if the file is missing.
+ *
+ * @param string $relative_path Path to the asset, relative to the theme root.
+ * @return string
+ */
+function proveridian_asset_version( $relative_path ) {
+	$file = get_template_directory() . $relative_path;
+	$mtime = file_exists( $file ) ? filemtime( $file ) : false;
+
+	return $mtime ? (string) $mtime : _S_VERSION;
+}
+
+/**
  * Enqueue scripts and styles.
  */
 function proveridian_scripts() {
-	wp_enqueue_style( 'proveridian-style', get_stylesheet_uri(), array(), _S_VERSION );
+	wp_enqueue_style( 'proveridian-style', get_stylesheet_uri(), array(), proveridian_asset_version( '/style.css' ) );
 	wp_style_add_data( 'proveridian-style', 'rtl', 'replace' );
 
-	wp_enqueue_style( 'proveridian-theme', get_template_directory_uri() . '/css/proveridian.css', array( 'proveridian-style' ), _S_VERSION );
+	wp_enqueue_style( 'proveridian-theme', get_template_directory_uri() . '/css/proveridian.css', array( 'proveridian-style' ), proveridian_asset_version( '/css/proveridian.css' ) );
 
-	wp_enqueue_script( 'proveridian-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'proveridian-navigation', get_template_directory_uri() . '/js/navigation.js', array(), proveridian_asset_version( '/js/navigation.js' ), true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
