@@ -617,17 +617,26 @@ body.pv-plain-page .site-main {
 	display: block;
 }
 
+.site-footer-meta {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px 24px;
+	margin-top: 16px;
+}
+
 .site-footer-tagline {
 	font-size: 13px;
 	color: #7E8E9C;
 	line-height: 1.6;
-	margin: 16px 0 0;
+	margin: 0;
 	max-width: 340px;
 }
 
 .site-footer-nav ul {
 	list-style: none;
-	margin: 24px 0 0;
+	margin: 0;
 	padding: 0;
 	display: flex;
 	justify-content: flex-end;
