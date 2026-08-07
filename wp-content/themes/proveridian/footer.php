@@ -17,6 +17,19 @@
 				<img src="<?php echo esc_url( get_template_directory_uri() . '/images/proveridian-lockup-horizontal-reversed-3200x653.png' ); ?>" alt="<?php bloginfo( 'name' ); ?>">
 			</a>
 			<p class="site-footer-tagline"><?php echo esc_html( get_bloginfo( 'description' ) ?: 'Governed AI enablement for the enterprise. Built and backed by The Provato Group.' ); ?></p>
+			<?php
+			if ( has_nav_menu( 'menu-2' ) ) {
+				wp_nav_menu(
+					array(
+						'theme_location' => 'menu-2',
+						'menu_id'        => 'footer-menu',
+						'container'      => 'nav',
+						'container_class' => 'site-footer-nav',
+						'depth'          => 1,
+					)
+				);
+			}
+			?>
 		</div><!-- .site-footer-inner -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->

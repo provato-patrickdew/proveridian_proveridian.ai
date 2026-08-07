@@ -624,3 +624,24 @@ body.pv-plain-page .site-main {
 	margin: 16px 0 0;
 	max-width: 340px;
 }
+
+.site-footer-nav ul {
+	list-style: none;
+	margin: 24px 0 0;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px 24px;
+}
+
+.site-footer-nav a {
+	font-size: 13px;
+	color: #7E8E9C;
+	text-decoration: none;
+}
+
+.site-footer-nav a:hover,
+.site-footer-nav a:focus,
+.site-footer-nav .current-menu-item > a {
+	color: #fff;
+}
