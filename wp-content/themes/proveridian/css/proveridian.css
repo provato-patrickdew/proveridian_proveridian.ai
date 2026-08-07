@@ -630,14 +630,24 @@ body.pv-plain-page .site-main {
 	margin: 24px 0 0;
 	padding: 0;
 	display: flex;
-	flex-wrap: wrap;
-	gap: 12px 24px;
+	justify-content: flex-end;
+}
+
+.site-footer-nav li + li {
+	border-left: 1px solid #7E8E9C;
 }
 
 .site-footer-nav a {
+	display: block;
+	padding: 0 16px;
 	font-size: 13px;
 	color: #7E8E9C;
 	text-decoration: none;
+	white-space: nowrap;
+}
+
+.site-footer-nav li:last-child a {
+	padding-right: 0;
 }
 
 .site-footer-nav a:hover,
